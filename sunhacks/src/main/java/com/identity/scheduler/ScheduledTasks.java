@@ -19,7 +19,6 @@ public class ScheduledTasks {
     @Scheduled(cron = "0 0/1 * * * ?")
     public void removeExpiredMaskedSecrets()  {
         Long currentTime = GlobalUtils.getCurrentTimestamp();
-        System.out.println(currentTime);
         List<MaskedSecrets> maskedSecrets = maskedSecretsRepository.findByActiveUntilLessThan(currentTime);
         for (MaskedSecrets maskedSecret: maskedSecrets) {
             maskedSecretsRepository.delete(maskedSecret);

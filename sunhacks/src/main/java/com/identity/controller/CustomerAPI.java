@@ -4,12 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/merchant")
-public class MerchantAPI {
+@RequestMapping("/customer")
+public class CustomerAPI {
 
-    @RequestMapping("/test")
+    @RequestMapping("/src/test")
     public String test() {
-        return "Merchant test";
+        return "Customer test";
     }
 
 }

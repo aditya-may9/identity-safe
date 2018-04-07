@@ -16,7 +16,7 @@ public class CentralAuthorityAPI {
     @Autowired
     CentralAuthorityService centralAuthorityService;
 
-    @RequestMapping("/test")
+    @RequestMapping("/src/test")
     public String test() {
         return "CA test";
     }
