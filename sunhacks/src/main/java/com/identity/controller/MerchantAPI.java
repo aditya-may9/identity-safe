@@ -55,4 +55,14 @@ public class MerchantAPI {
         return merchantService.getMerchantData(email);
     }
 
+    @RequestMapping("/checkIfMerchantInfoIsLegit")
+    @CrossOrigin
+    public Boolean checkIfMerchantInfoIsLegit(@RequestParam(value = "merchant1Identity") String merchant1Identity,
+                                              @RequestParam(value = "merchant2Identity") String merchant2Identity,
+                                              @RequestParam(value = "maskedSecret") String maskedSecret,
+                                              @RequestParam(value = "secretType") String secretType,
+                                              @RequestParam(value = "customerIdentity") String customerIdentity) {
+        return merchantService.checkIfMerchantInfoIsLegit(merchant1Identity, merchant2Identity, maskedSecret, secretType, customerIdentity);
+    }
+
 }

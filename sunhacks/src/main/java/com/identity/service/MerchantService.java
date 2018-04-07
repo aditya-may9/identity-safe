@@ -34,4 +34,8 @@ public class MerchantService {
         return merchantRepository.findByEmailAndPassword(email, password);
     }
 
+    public Boolean checkIfMerchantInfoIsLegit(String merchant1Identity, String merchant2Identity, String maskedSecret, String secretType, String customerIdentity) {
+        return centralAuthorityService.checkIfMerchantInfoIsLegit(merchant1Identity, merchant2Identity, maskedSecret, secretType, customerIdentity);
+    }
+
 }

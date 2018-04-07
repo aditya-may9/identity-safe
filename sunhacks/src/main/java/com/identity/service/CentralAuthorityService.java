@@ -166,4 +166,24 @@ public class CentralAuthorityService {
         }
     }
 
+    public Boolean checkIfMerchantInfoIsLegit(String requestor, String requestee, String requestorMaskedSecret, String secretType, String customerIdentity) {
+        if (!checkIfMaskedSecretIsValid(requestorMaskedSecret, requestor, customerIdentity, secretType)) {
+            return Boolean.FALSE;
+        }
+        if (!checkIfMerchantHasMaskedSecret(requestee, secretType, customerIdentity)) {
+            return Boolean.FALSE;
+        }
+
+        return Boolean.TRUE;
+    }
+
+    public Boolean checkIfMerchantHasMaskedSecret(String merchantIdentity, String secretType, String customerIdentity) {
+        List<MaskedSecrets> maskedSecret = maskedSecretsRepository.findByCustomerIdentityAndSecretTypeAndMerchant(customerIdentity, secretType, merchantIdentity);
+        if (maskedSecret.size() == 0) {
+            return Boolean.FALSE;
+        } else {
+            return Boolean.TRUE;
+        }
+    }
+
 }
