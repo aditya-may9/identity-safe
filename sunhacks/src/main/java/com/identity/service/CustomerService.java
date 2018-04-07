@@ -29,4 +29,8 @@ public class CustomerService {
     public Customer getCustomerData(String email) {
         return centralAuthorityService.getCustomerData(email);
     }
+
+    public Customer getCustomerForEmailAndPassword(String email, String password) {
+        return customerRepository.findByEmailAndPassword(email, password);
+    }
 }

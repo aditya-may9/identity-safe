@@ -30,4 +30,8 @@ public class MerchantService {
         return centralAuthorityService.getMerchantData(email);
     }
 
+    public Merchant getMerchantForEmailAndPassword(String email, String password) {
+        return merchantRepository.findByEmailAndPassword(email, password);
+    }
+
 }
