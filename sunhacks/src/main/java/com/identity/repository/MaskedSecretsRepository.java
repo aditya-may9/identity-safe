@@ -12,4 +12,8 @@ public interface MaskedSecretsRepository extends MongoRepository<MaskedSecrets, 
     public List<MaskedSecrets> findByCustomerIdentityAndMaskedSecretAndSecretTypeAndMerchant(String customerIdentity, String maskedSecret, String secretType, String merchant);
 
     public List<MaskedSecrets> findByCustomerIdentityAndSecretTypeAndMerchant(String customerIdentity, String secretType, String merchant);
+
+    public List<MaskedSecrets> deleteByCustomerIdentityAndSecretType(String customerIdentity, String secretType);
+
+    public MaskedSecrets deleteByCustomerIdentityAndSecretTypeAndMerchant(String customerIdentity, String secretType, String merchant);
 }

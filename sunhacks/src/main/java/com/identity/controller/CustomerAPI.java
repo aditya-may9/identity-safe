@@ -3,6 +3,7 @@ package com.identity.controller;
 import com.identity.pojo.Customer;
 import com.identity.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,11 +16,13 @@ public class CustomerAPI {
     CustomerService customerService;
 
     @RequestMapping("/test")
+    @CrossOrigin
     public String test() {
         return "Customer test";
     }
 
     @RequestMapping("/registerCustomerToCentralAuthority")
+    @CrossOrigin
     public Customer registerCustomerToCentralAuthority(@RequestParam(value = "identity") String identity,
                                                        @RequestParam(value = "name") String name,
                                                        @RequestParam(value = "address") String address,
@@ -29,11 +32,13 @@ public class CustomerAPI {
     }
 
     @RequestMapping("/unregisterCustomerFromCentralRepository")
+    @CrossOrigin
     public Customer unregisterCustomerFromCentralRepository(@RequestParam(value = "email") String email) {
         return customerService.unregisterCustomerFromCentralRepository(email);
     }
 
     @RequestMapping("/updateCustomerData")
+    @CrossOrigin
     public Customer updateCustomerData(@RequestParam(value = "identity") String identity,
                                        @RequestParam(value = "name") String name,
                                        @RequestParam(value = "address") String address,
@@ -43,6 +48,7 @@ public class CustomerAPI {
     }
 
     @RequestMapping("/getCustomerData")
+    @CrossOrigin
     public Customer getCustomerData(@RequestParam(value = "email") String email) {
         return customerService.getCustomerData(email);
     }

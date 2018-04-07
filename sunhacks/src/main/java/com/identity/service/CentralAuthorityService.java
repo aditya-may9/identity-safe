@@ -130,4 +130,25 @@ public class CentralAuthorityService {
         return merchant;
     }
 
+    public Boolean unauthorizeSecretToMerchant(String customerIdentity, String secretType, String merchantIdentity) {
+        MaskedSecrets maskedSecret = maskedSecretsRepository.deleteByCustomerIdentityAndSecretTypeAndMerchant(customerIdentity, secretType, merchantIdentity);
+
+        if (maskedSecret == null) {
+            return Boolean.FALSE;
+        } else {
+            return Boolean.TRUE;
+        }
+    }
+
+    public Boolean removeCustomerSecret(String customerIdentity, String secretType) {
+        List<MaskedSecrets> maskedSecrets = maskedSecretsRepository.deleteByCustomerIdentityAndSecretType(customerIdentity, secretType);
+        CustomerSecrets customerSecret = customerSecretsRepository.deleteByCustomerIdentityAndSecretType(customerIdentity, secretType);
+
+        if (customerSecret == null) {
+            return Boolean.FALSE;
+        } else {
+            return Boolean.TRUE;
+        }
+    }
+
 }
