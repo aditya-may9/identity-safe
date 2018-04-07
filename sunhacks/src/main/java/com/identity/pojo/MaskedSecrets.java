@@ -2,9 +2,11 @@ package com.identity.pojo;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class MaskedSecrets {
+public class MaskedSecrets implements Serializable {
+
+    private static final long serialVersionUID = -1L;
 
     @Id
     public String id;
