@@ -12,6 +12,6 @@ public interface MerchantRepository extends MongoRepository<Merchant, String> {
 
     public Merchant findByEmailAndPassword(String email, String password);
 
-    public List<Merchant> findByMerchantIdentity(String merchantIdentity);
+    public List<Merchant> findByIdentity(String identity);
 
 }

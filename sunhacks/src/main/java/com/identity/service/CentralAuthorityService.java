@@ -37,7 +37,7 @@ public class CentralAuthorityService {
     }
 
     public Boolean hasMerchantRegistered(String merchantIdentity) {
-        if (merchantRepository.findByMerchantIdentity(merchantIdentity).size() == 0) {
+        if (merchantRepository.findByIdentity(merchantIdentity).size() == 0) {
             return Boolean.FALSE;
         } else {
             return Boolean.TRUE;
