@@ -1,6 +1,6 @@
 package com.identity.controller;
 
-import com.identity.model.User;
+import com.identity.pojo.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
