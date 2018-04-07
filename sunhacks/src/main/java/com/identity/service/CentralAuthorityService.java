@@ -36,7 +36,19 @@ public class CentralAuthorityService {
         return customerSecrets;
     }
 
+    public Boolean hasMerchantRegistered(String merchantIdentity) {
+        if (merchantRepository.findByMerchantIdentity(merchantIdentity).size() == 0) {
+            return Boolean.FALSE;
+        } else {
+            return Boolean.TRUE;
+        }
+    }
+
     public MaskedSecrets authorizeSecretToMerchant(String customerIdentity, String secretType, String merchantIdentity, Long minutes) {
+        if (!hasMerchantRegistered(merchantIdentity)) {
+            return null;
+        }
+
         CustomerSecrets customerSecret = customerSecretsRepository.findByCustomerIdentityAndSecretType(customerIdentity, secretType);
         String maskedSecretString = GlobalUtils.maskSecret(customerSecret.getCustomerSecret());
         Long activeUntil = GlobalUtils.getCurrentTimestamp() + GlobalUtils.convertMinutesToSeconds(minutes);
