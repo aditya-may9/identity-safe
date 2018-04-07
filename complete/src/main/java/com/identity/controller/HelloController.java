@@ -1,12 +1,12 @@
-package com.innocreat.hello;
+package com.identity.controller;
 
-import com.innocreat.model.Greeting;
+import com.identity.model.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.innocreat.service.CalculatorService;
+import com.identity.service.CalculatorService;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -31,7 +31,7 @@ public class HelloController {
     }
 
     //This API does calculation between two numbers
-    @RequestMapping("/do-math")
+    @GetMapping("/do-math")
     public Integer doCal(@RequestParam(value = "firstVal") Integer firstVal, @RequestParam(value = "secondVal") Integer secondVal, @RequestParam(value = "operator", defaultValue = "plus") String operator) {
         if (operator.equals("plus")) {
             System.out.println("Inside plus");

@@ -1,6 +1,4 @@
-package com.innocreat.model;
-
-import org.springframework.context.annotation.Bean;
+package com.identity.model;
 
 /**
  * Created by Balachandar on 10-07-2017.

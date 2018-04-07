@@ -125,7 +125,7 @@ viewControllerHandlerMapping
 
 You can clearly see **org.springframework.boot.autoconfigure** beans. There is also a `tomcatEmbeddedServletContainerFactory`.
 
-Check out the com.innocreat.service.
+Check out the com.identity.service.
 
 ....
 $ curl localhost:8080

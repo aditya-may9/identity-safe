@@ -1,4 +1,4 @@
-package com.innocreat.hello;
+package com.identity.controller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
