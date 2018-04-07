@@ -2,6 +2,7 @@ package com.identity.controller;
 
 import com.identity.pojo.Customer;
 import com.identity.pojo.Merchant;
+import com.identity.scheduler.ScheduledTasks;
 import com.identity.service.CustomerService;
 import com.identity.service.MerchantService;
 import com.identity.utils.GlobalConstants;
@@ -20,6 +21,9 @@ public class GenericAPI {
 
     @Autowired
     MerchantService merchantService;
+
+    @Autowired
+    ScheduledTasks scheduledTasks;
 
     @RequestMapping("/test")
     @CrossOrigin
@@ -47,6 +51,13 @@ public class GenericAPI {
                 return Boolean.TRUE;
             }
         }
+    }
+
+    @RequestMapping("/clearExpiredMaskedSecrets")
+    @CrossOrigin
+    public String clearExpiredMaskedSecrets() {
+        scheduledTasks.removeExpiredMaskedSecrets();
+        return "DONE";
     }
 
 }
