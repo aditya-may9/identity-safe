@@ -10,6 +10,6 @@ public interface CustomerSecretsRepository extends MongoRepository<CustomerSecre
     public List<CustomerSecrets> findByCustomerIdentity(String customerIdentity);
     public CustomerSecrets findByCustomerIdentityAndSecretType(String customerIdentity, String secretType);
 
-    public CustomerSecrets deleteByCustomerIdentityAndSecretType(String customerIdentity, String secretType);
+    public Long deleteByCustomerIdentityAndSecretType(String customerIdentity, String secretType);
 
 }

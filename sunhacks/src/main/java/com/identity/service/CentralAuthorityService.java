@@ -50,6 +50,9 @@ public class CentralAuthorityService {
         }
 
         CustomerSecrets customerSecret = customerSecretsRepository.findByCustomerIdentityAndSecretType(customerIdentity, secretType);
+        if (customerSecret == null) {
+            return null;
+        }
         String maskedSecretString = GlobalUtils.maskSecret(customerSecret.getCustomerSecret());
         Long activeUntil = GlobalUtils.getCurrentTimestamp() + GlobalUtils.convertMinutesToSeconds(minutes);
 
@@ -143,9 +146,9 @@ public class CentralAuthorityService {
     }
 
     public Boolean unauthorizeSecretToMerchant(String customerIdentity, String secretType, String merchantIdentity) {
-        MaskedSecrets maskedSecret = maskedSecretsRepository.deleteByCustomerIdentityAndSecretTypeAndMerchant(customerIdentity, secretType, merchantIdentity);
+        Long numRecs = maskedSecretsRepository.deleteByCustomerIdentityAndSecretTypeAndMerchant(customerIdentity, secretType, merchantIdentity);
 
-        if (maskedSecret == null) {
+        if (numRecs == 0L) {
             return Boolean.FALSE;
         } else {
             return Boolean.TRUE;
@@ -154,9 +157,9 @@ public class CentralAuthorityService {
 
     public Boolean removeCustomerSecret(String customerIdentity, String secretType) {
         List<MaskedSecrets> maskedSecrets = maskedSecretsRepository.deleteByCustomerIdentityAndSecretType(customerIdentity, secretType);
-        CustomerSecrets customerSecret = customerSecretsRepository.deleteByCustomerIdentityAndSecretType(customerIdentity, secretType);
+        Long numDeleted = customerSecretsRepository.deleteByCustomerIdentityAndSecretType(customerIdentity, secretType);
 
-        if (customerSecret == null) {
+        if (numDeleted == 0L) {
             return Boolean.FALSE;
         } else {
             return Boolean.TRUE;
