@@ -40,8 +40,16 @@
             return $http.get('/centralAuthority/addCustomerSecret/?customerIdentity=', secret.customerIdentity+'&secret='+secret.secret+'&secretType='+secret.secretType).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
+        function hasSecret(secret){
+            return $http.get('/centralAuthority/checkIfSecretExists/?customerIdentity=', secret.customerIdentity+'&secretType='+secret.secretType).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
+        }
+
         function authorizeSecretToMerchant(authorizeMerchant) {
             return $http.get('/centralAuthority/authorizeSecretToMerchant/?customerIdentity=', authorizeMerchant.customerIdentity+'&secretType='+authorizeMerchant.secretType+'&merchantIdentity='+authorizeMerchant.merchantIdentity+'&minutes='+authorizeMerchant.minutes).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
+        }
+
+        function getAllMaskedDataForCustomer(customerIdentity){
+            return $http.get('/centralAuthority/getAllMaskedDataForMerchant/?customerIdentity=', customerIdentity).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
         function checkIfMerchant1IsLegit(legitInfo) {
