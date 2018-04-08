@@ -26,7 +26,6 @@
 
         function register(user) {
             if(user.type == "user")
-                //$http.get(addCustomerSecret)
                 return $http.get('/customer/registerCustomerToCentralAuthority/?identity='+user.name+'&name='+user.name+'&address='+user.address+'&email='+user.email+'&password='+user.password).then(handleSuccess, handleError('Error register user by username'));
 
             else if(user.type == "merchant")
