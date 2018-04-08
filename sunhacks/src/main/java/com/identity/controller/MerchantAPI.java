@@ -65,4 +65,12 @@ public class MerchantAPI {
         return merchantService.checkIfMerchantInfoIsLegit(merchant1Identity, merchant2Identity, maskedSecret, secretType, customerIdentity);
     }
 
+    @RequestMapping("/getMerchantMaskedSecret")
+    @CrossOrigin
+    public String getMerchantMaskedSecret(@RequestParam(value = "merchantIdentity") String merchantIdentity,
+                                          @RequestParam(value = "secretType") String secretType,
+                                          @RequestParam(value = "customerIdentity") String customerIdentity) {
+        return merchantService.getMerchantMaskedSecret(merchantIdentity, secretType, customerIdentity);
+    }
+
 }

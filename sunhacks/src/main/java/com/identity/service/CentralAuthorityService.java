@@ -186,4 +186,13 @@ public class CentralAuthorityService {
         }
     }
 
+    public String getMerchantMaskedSecret(String merchantIdentity, String secretType, String customerIdentity) {
+        MaskedSecrets maskedSecret = maskedSecretsRepository.findByMerchantAndSecretTypeAndCustomerIdentity(merchantIdentity, secretType, customerIdentity);
+        if (maskedSecret == null) {
+            return null;
+        } else {
+            return maskedSecret.getMaskedSecret();
+        }
+    }
+
 }

@@ -38,4 +38,8 @@ public class MerchantService {
         return centralAuthorityService.checkIfMerchantInfoIsLegit(merchant1Identity, merchant2Identity, maskedSecret, secretType, customerIdentity);
     }
 
+    public String getMerchantMaskedSecret(String merchantIdentity, String secretType, String customerIdentity) {
+        return centralAuthorityService.getMerchantMaskedSecret(merchantIdentity, secretType, customerIdentity);
+    }
+
 }
