@@ -35,6 +35,13 @@ public class CentralAuthorityAPI {
         }
     }
 
+    @RequestMapping("/checkIfSecretExists")
+    @CrossOrigin
+    public Boolean checkIfSecretExists(@RequestParam(value = "customerIdentity") String customerIdentity,
+                                       @RequestParam(value = "secretType") String secretType) {
+        return centralAuthorityService.checkIfSecretExists(customerIdentity, secretType);
+    }
+
     @RequestMapping("/removeCustomerSecret")
     @CrossOrigin
     public Boolean removeCustomerSecret(@RequestParam(value = "customerIdentity") String customerIdentity,
