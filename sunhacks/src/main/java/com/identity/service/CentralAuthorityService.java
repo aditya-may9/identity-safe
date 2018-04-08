@@ -195,4 +195,13 @@ public class CentralAuthorityService {
         }
     }
 
+    public Boolean checkIfSecretExists(String customerIdentity, String secretType) {
+        CustomerSecrets customerSecret = customerSecretsRepository.findByCustomerIdentityAndSecretType(customerIdentity, secretType);
+        if (customerSecret == null) {
+            return Boolean.FALSE;
+        } else {
+            return Boolean.TRUE;
+        }
+    }
+
 }
