@@ -11,7 +11,7 @@
 
         $urlRouterProvider.otherwise('/');
 
-        $stateProvider
+        $stateProvider           
 
             .state('/', {
                 url:'/',
@@ -44,19 +44,40 @@
                 }]                
             })
 
-            .state('login.manage', {
-                params:{username:null,authdata:null},
+            .state('user', {
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({                        
-                        templateUrl: 'login/manage.view.html',
-                        params:{username:null,authdata:null},
-                        controller: 'ManageController',
+                    $modal.open({
+                        controller: 'UserController',
+                        templateUrl: 'user/user.view.html',
                         backdrop: 'static'          
-                    }).result.finally(function(data) {
+                    }).result.finally(function() {
                         $state.go('^');
                     });
-                }]
-                
+                }]                
+            })
+
+            .state('merchant', {
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        controller: 'MerchantController',
+                        templateUrl: 'merchant/merchant.view.html',
+                        backdrop: 'static'          
+                    }).result.finally(function() {
+                        $state.go('^');
+                    });
+                }]                
+            })
+
+            .state('ca', {
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        controller: 'CAController',
+                        templateUrl: 'ca/ca.view.html',
+                        backdrop: 'static'          
+                    }).result.finally(function() {
+                        $state.go('^');
+                    });
+                }]                
             });
     }
 

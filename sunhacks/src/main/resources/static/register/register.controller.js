@@ -8,6 +8,13 @@
     RegisterController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function RegisterController($scope,$state, UserService, $rootScope, FlashService) {
 
+        
+        $scope.register = function() {
+            if($scope.user.password != $scope.reenterpassword)
+            {
+                FlashService.Error("Passwords do not match");
+                return;
+            }
             $scope.dataLoading = true;
             UserService.register($scope.user)
                 .then(function (response) {
@@ -21,10 +28,10 @@
                 });
         };
 
-
         $scope.cancel = function(){
             $state.go('/');
         };
 
+    }
 
 })();
