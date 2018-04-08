@@ -45,39 +45,21 @@
             })
 
             .state('user', {
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({
-                        controller: 'UserController',
-                        templateUrl: 'user/user.view.html',
-                        backdrop: 'static'          
-                    }).result.finally(function() {
-                        $state.go('^');
-                    });
-                }]                
+                url:'/user',                
+                controller: 'UserController',
+                templateUrl: 'user/user.view.html'
             })
 
             .state('merchant', {
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({
-                        controller: 'MerchantController',
-                        templateUrl: 'merchant/merchant.view.html',
-                        backdrop: 'static'          
-                    }).result.finally(function() {
-                        $state.go('^');
-                    });
-                }]                
+                url:'/merchant',                
+                controller: 'MerchantController',
+                templateUrl: 'merchant/merchant.view.html'
             })
 
             .state('ca', {
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({
-                        controller: 'CAController',
-                        templateUrl: 'ca/ca.view.html',
-                        backdrop: 'static'          
-                    }).result.finally(function() {
-                        $state.go('^');
-                    });
-                }]                
+                url:'/ca',                
+                controller: 'CAController',
+                templateUrl: 'ca/ca.view.html'
             });
     }
 
