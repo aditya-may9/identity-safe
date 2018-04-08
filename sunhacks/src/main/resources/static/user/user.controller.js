@@ -67,6 +67,7 @@
                     console.log(response);
                     $scope.maskedSec = response.maskedSecret;
                     FlashService.Success('Merchant authorized successfully', false);
+                    $scope.getAllMaskedDataForCustomer();
                 } else {
                     FlashService.Error('Merchant authorization failed', false);
                 }

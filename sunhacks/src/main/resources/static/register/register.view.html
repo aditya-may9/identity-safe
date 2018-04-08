@@ -26,7 +26,8 @@
       </div>
       <div class="form-group" ng-class="{ 'has-error': form.reenterpassword.$dirty && form.reenterpassword.$error.required }">
         <label for="reenterpassword">Re-enter Password</label>
-        <input type="reenterpassword" name="reenterpassword" id="reenterpassword" type="password" class="form-control" ng-model="reenterpassword" required />
+          <input name="reenterpassword" id="reenterpassword" type="password" class="form-control"
+                 ng-model="reenterpassword" required/>
         <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
       </div>
       <div class="form-group" ng-class="{ 'has-error': form.type.$dirty && form.type.$error.required }">
