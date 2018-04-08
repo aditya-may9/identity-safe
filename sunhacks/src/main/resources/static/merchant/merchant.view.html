@@ -1,91 +1,49 @@
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-    <h1 style="color:white;text-align:center">Merchant</h1>
-    <div class="imgcontainer">
-        <img src="Register-512.png" alt="Avatar" class="avatar">
-    </div>
-</nav>
-
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <div class="row">
-                <div class="col_left" style="background-color:#aaa;">
-                    <table>
-                        <tr ng-repeat="client in clientData">
-                            <td>{{client.customerIdentity}}</td>
-                            <td>{{client.maskedSecret}}</td>
-                        </tr>
-                    </table>
-                    <h2>ID</h2>
-                    <div class="alert alert-success" id="data1">
-
-                        <strong>Data 1:</strong> hjjhvjhvhjv
-                    </div>
-                    <div class="alert alert-success" id="data2">
-
-                        <strong>Data 2: </strong> hjjhvjhvhjv
-                    </div>
-                    <div class="alert alert-success" id="data3">
-
-                        <strong>Data 3:</strong> hjjhvjhvhjv
-                    </div>
-                </div>
-                <div class="col_left" style="background-color:#bbb;">
-                    <h2>Fake SSN</h2>
-                    <div class="alert alert-success" id="data4">
-
-                        <strong>Data 1:</strong> hjjhvjhvhjv
-                    </div>
-                    <div class="alert alert-success" id="data5">
-
-                        <strong>Data 2: </strong> hjjhvjhvhjv
-                    </div>
-                    <div class="alert alert-success" id="data6">
-
-                        <strong>Data 3:</strong> hjjhvjhvhjv
-                    </div>
-                    <div class="alert alert-success" id="data7">
-
-                        <strong>Data 3:</strong> hjjhvjhvhjv
-                    </div>
-                </div>
-            </div>
-
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>User</td>
+                    <td>Secret</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="client in clientData">
+                    <td>{{client.customerIdentity}}</td>
+                    <td>{{client.maskedSecret}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="col-sm-6">
         <form ng-submit="checkIfMerchant1IsLegit()">
-        <div>
-        <div class="col-sm-8 text-left sidenav2">
-            <h1>Welcome</h1>
             <div class="container">
-                <label for="uname"><b>Merchant Id: </b></label>
-                <input type="text" ng-model="info.email" name="email" required>
-                <label for="fakessn"><b>Fake SSN: </b></label>
-                <input type="text" ng-model="info.maskedSecret" name="maskedSecret" required>
-                <label for="secrettype"><b>Secret type: </b></label>
-                <input type="text" ng-model="info.secretType" name="secretType" required>
-                <label for="clientid"><b>Client Email: </b></label>
-                <input type="text" ng-model="info.customerIdentity" name="customerIdentity" required>
-                <button type="submit">Request</button>
+                <div class="form-group" ng-class="{ 'has-error': form.merchantIdentity.$dirty && form.merchantIdentity.$error.required }">
+                    <label for="merchantIdentity">Merchant Identity</label>
+                    <input type="text" name="merchantIdentity" id="merchantIdentity" class="form-control" ng-model="info.email" required />
+                    <span ng-show="form.merchantIdentity.$dirty && form.merchantIdentity.$error.required" class="help-block">Merchant Identity is required</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.maskedSecret.$dirty && form.maskedSecret.$error.required }">
+                    <label for="maskedSecret">Masked Secret</label>
+                    <input type="text" name="maskedSecret" id="maskedSecret" class="form-control" ng-model="info.maskedSecret" required />
+                    <span ng-show="form.maskedSecret.$dirty && form.maskedSecret.$error.required" class="help-block">Masked secret is required</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.secretType.$dirty && form.secretType.$error.required }">
+                    <label for="secretType">Secret type</label>
+                    <input type="text" name="secretType" id="secretType" class="form-control" ng-model="info.secretType" required />
+                    <span ng-show="form.secretType.$dirty && form.secretType.$error.required" class="help-block">Secret type is required</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.customerIdentity.$dirty && form.customerIdentity.$error.required }">
+                    <label for="customerIdentity">Customer Identity</label>
+                    <input type="text" name="customerIdentity" id="customerIdentity" class="form-control" ng-model="info.customerIdentity" required />
+                    <span ng-show="form.customerIdentity.$dirty && form.customerIdentity.$error.required" class="help-block">Client Identity is required</span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Submit</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>
             </div>
-        </div>
-            <hr>
-
-        </div>
     </form>
 
     </div>
