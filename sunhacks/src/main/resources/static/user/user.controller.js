@@ -8,9 +8,12 @@
     UserController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function UserController($scope,$state, UserService, $rootScope, FlashService) {
         
+        $scope.secretExists = false
         
         $scope.secret.customerIdentity = $rootScope.currentUser;
         $scope.secret.secretType = 'SSN';
+
+        $scope.authorizeMerchant = {}
 
         $scope.hasSecret = function(){
         UserService.hasSecret(secret).then(function (response) {
@@ -40,6 +43,8 @@
 
         $scope.authorizeSecretToMerchant = function(){
             $scope.dataLoading = true;
+            $scope.authorizeMerchant.customerIdentity = $rootScope.currentUser;
+            $scope.authorizeMerchant.secretType = "SSN";
             UserService.authorizeSecretToMerchant($scope.authorizeMerchant).then(function (response) {
                 if (response.success) {
                     console.log(respose);
