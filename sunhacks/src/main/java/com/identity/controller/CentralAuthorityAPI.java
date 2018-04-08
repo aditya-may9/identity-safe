@@ -30,6 +30,12 @@ public class CentralAuthorityAPI {
         return centralAuthorityService.getAllMaskedDataForMerchant(merchantIdentity);
     }
 
+    @RequestMapping("/getAllMaskedDataForCustomer")
+    @CrossOrigin
+    public List<MaskedSecrets> getAllMaskedDataForCustomer(@RequestParam(value = "customerIdentity") String customerIdentity) {
+        return centralAuthorityService.getAllMaskedDataForCustomer(customerIdentity);
+    }
+
     @RequestMapping("/addCustomerSecret")
     @CrossOrigin
     public Boolean addCustomerSecret(@RequestParam(value = "customerIdentity") String customerIdentity,
