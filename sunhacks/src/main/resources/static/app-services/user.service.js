@@ -28,11 +28,10 @@
 
         function register(user) {
             if(user.type == "user")
-                return $http.get('/customer/registerCustomerToCentralAuthority/?identity='+user.email+'&name='+user.name+'&address='+user.address+'&email='+user.email+'&password='+user.password).then(handleSuccess, handleError('Error register user by username'));
-
+                return $http.get('/customer/registerCustomerToCentralAuthority/?identity='+user.email+'&name='+user.username+'&address='+user.address+'&email='+user.email+'&password='+user.password).then(handleSuccess, handleError('Error register user by username'));
             else if(user.type == "merchant")
             {
-                return $http.get('/customer/registerCustomerToCentralAuthority/?identity='+user.email+'&name='+user.name+'&address='+user.address+'&email='+user.email+'&password='+user.password+'&description='+user.description).then(handleSuccess, handleError('Error register user by username'));
+                return $http.get('/merchant/registerMerchantToCentralAuthority/?identity='+user.email+'&name='+user.username+'&address='+user.address+'&email='+user.email+'&password='+user.password+'&description='+user.description).then(handleSuccess, handleError('Error register user by username'));
             }
         }
 

@@ -7,6 +7,17 @@
 
     MerchantController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function MerchantController($scope,$state, UserService, $rootScope, FlashService) {
+
+        $scope.callme = UserService.getClientDataByMerchant($rootScope.currentUser)
+            .then(function (response) {
+                if (response.success) {
+                    $scope.clientData = response.data;
+                } else {
+                    FlashService.Error(response.message);
+                    $scope.dataLoading = false;
+                }
+            });
+        $scope.callme();
         $scope.checkIfMerchant1IsLegit = function() {
 
             $scope.dataLoading = true;
@@ -20,15 +31,7 @@
 
             console.log($scope.legitInfo);
 
-            UserService.getClientDataByMerchant($rootScope.currentUser)
-                .then(function (response) {
-                    if (response.success) {
-                       $scope.clientData = response.data;
-                    } else {
-                        FlashService.Error(response.message);
-                        $scope.dataLoading = false;
-                    }
-                });
+
             UserService.checkIfMerchant1IsLegit(legitInfo)
                 .then(function (response) {
                     if (response.success) {
@@ -39,10 +42,8 @@
                     }
                 });
         };
-
         $scope.cancel = function(){
             $state.go('/');
         };
     }
-
 })();

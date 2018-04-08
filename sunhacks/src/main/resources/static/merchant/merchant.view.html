@@ -26,10 +26,9 @@
             <div class="row">
                 <div class="col_left" style="background-color:#aaa;">
                     <table>
-                        <tr ng-repeat="car in cars" ng-if="$index % 4 == 0">
-                            <td ng-repeat="car in cars.slice($index, $index + 4)">
-                                {{car}}
-                            </td>
+                        <tr ng-repeat="client in clientData">
+                            <td>{{client.customerIdentity}}</td>
+                            <td>{{client.maskedSecret}}</td>
                         </tr>
                     </table>
                     <h2>ID</h2>
@@ -68,6 +67,8 @@
             </div>
 
         </div>
+        <form ng-submit="checkIfMerchant1IsLegit()">
+        <div>
         <div class="col-sm-8 text-left sidenav2">
             <h1>Welcome</h1>
             <div class="container">
@@ -81,9 +82,11 @@
                 <input type="text" ng-model="info.customerIdentity" name="customerIdentity" required>
                 <button type="submit">Request</button>
             </div>
+        </div>
             <hr>
 
         </div>
+    </form>
 
     </div>
 </div>
