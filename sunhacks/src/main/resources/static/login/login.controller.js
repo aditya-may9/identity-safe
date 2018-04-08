@@ -8,11 +8,13 @@
     LoginController.$inject = ['$state','$scope','UserService', 'FlashService','$rootScope'];
     function LoginController($state,$scope, UserService, FlashService, $rootScope) {        
         
-     /*   $scope.login = function(){
-
+        $scope.login = function(){
+            $rootScope.globals.currentUser = $scope.user.email;
+            $rootScope.globals.currentUserType = $scope.user.type;
+            $state.go($scope.user.type);
         }
-*/
-        $scope.login = function() {
+
+        /*$scope.login = function() {
             $scope.dataLoading = true;
             UserService.login($scope.user).then(function (response) {
                 console.log(response);
@@ -25,7 +27,7 @@
                     $scope.dataLoading = false;
                 }
             });
-        };
+        };*/
 
         $scope.cancel = function(){
             $state.go('/');

@@ -1,3 +1,13 @@
 ﻿.modal {
 display: block;
 }
+
+.jumbotron{
+    height: 100vh;
+}
+
+#thumbnail a img {
+    display:block;
+    margin:auto;
+    width:40%;
+}
