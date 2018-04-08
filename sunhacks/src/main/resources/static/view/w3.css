@@ -1,0 +1,84 @@
+* {
+    font-family: Cambria;
+    box-sizing: border-box;
+}
+.column_wrap {position:relative;}
+.col_left {
+    padding: 25px;
+    display: table-cell;
+}
+
+.row {
+    display: table; /* Make the container element behave like a table */
+    width: 100%; /* Set full-width to expand the whole page */
+}
+
+.alert{
+    width: 100%;
+}
+form {border: 3px solid #f1f1f1;}
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 2px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+button:hover {
+    opacity: 0.8;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+    width: 50%;
+}
+.sidenav2 {
+    padding-top: 2px;
+    background-color: #ffffff;
+    height: 100%;
+    width: 50%;
+}
+.imgcontainer {
+    text-align: center;
+    margin: 10px 0 10px 0;
+}
+
+img.avatar {
+    width: 5%;
+    border-radius: 5%;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height:auto;}
+}
+
+.container {
+    padding: 16px;
+    width: 50%;
+}

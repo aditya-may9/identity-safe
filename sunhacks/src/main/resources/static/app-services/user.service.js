@@ -48,6 +48,10 @@
             return $http.get('/merchant/checkIfMerchantInfoIsLegit/?merchant1Identity=' + legitInfo.merchant1Identity+'&merchant2Identity='+legitInfo.merchant2Identity+'&maskedSecret='+legitInfo.maskedSecret+'&secretType='+legitInfo.secretType+'&customerIdentity='+legitInfo.customerIdentity).then(handleSuccess, handleError('Error checking merchant is legit or not user'));
         }
 
+        function getClientDataByMerchant(user){
+            return $http.get('/centralAuthority/getAllMaskedDataForMerchant/?merchantIdentity=', user).then(handleSuccess, handleError('Error getClientDataByMerchant user'));
+        }
+
         function Delete(id) {
             return $http.delete('/api/users/' + id).then(handleSuccess, handleError('Error deleting user'));
         }

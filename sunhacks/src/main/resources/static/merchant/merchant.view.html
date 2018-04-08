@@ -1,0 +1,91 @@
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <h1 style="color:white;text-align:center">Merchant</h1>
+    <div class="imgcontainer">
+        <img src="Register-512.png" alt="Avatar" class="avatar">
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <div class="row">
+                <div class="col_left" style="background-color:#aaa;">
+                    <table>
+                        <tr ng-repeat="car in cars" ng-if="$index % 4 == 0">
+                            <td ng-repeat="car in cars.slice($index, $index + 4)">
+                                {{car}}
+                            </td>
+                        </tr>
+                    </table>
+                    <h2>ID</h2>
+                    <div class="alert alert-success" id="data1">
+
+                        <strong>Data 1:</strong> hjjhvjhvhjv
+                    </div>
+                    <div class="alert alert-success" id="data2">
+
+                        <strong>Data 2: </strong> hjjhvjhvhjv
+                    </div>
+                    <div class="alert alert-success" id="data3">
+
+                        <strong>Data 3:</strong> hjjhvjhvhjv
+                    </div>
+                </div>
+                <div class="col_left" style="background-color:#bbb;">
+                    <h2>Fake SSN</h2>
+                    <div class="alert alert-success" id="data4">
+
+                        <strong>Data 1:</strong> hjjhvjhvhjv
+                    </div>
+                    <div class="alert alert-success" id="data5">
+
+                        <strong>Data 2: </strong> hjjhvjhvhjv
+                    </div>
+                    <div class="alert alert-success" id="data6">
+
+                        <strong>Data 3:</strong> hjjhvjhvhjv
+                    </div>
+                    <div class="alert alert-success" id="data7">
+
+                        <strong>Data 3:</strong> hjjhvjhvhjv
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-8 text-left sidenav2">
+            <h1>Welcome</h1>
+            <div class="container">
+                <label for="uname"><b>Merchant Id: </b></label>
+                <input type="text" ng-model="info.email" name="merchant1Identity" required>
+                <label for="fakessn"><b>Fake SSN: </b></label>
+                <input type="text" ng-model="info.maskedSecret" name="maskedSecret" required>
+                <label for="secrettype"><b>Secret type: </b></label>
+                <input type="text" ng-model="info.secretType" name="secretType" required>
+                <label for="clientid"><b>Client Email: </b></label>
+                <input type="text" ng-model="info.customerIdentity" name="customerIdentity" required>
+                <button type="submit">Request</button>
+            </div>
+            <hr>
+
+        </div>
+
+    </div>
+</div>
+
+
