@@ -5,8 +5,10 @@
         .module('app')
         .controller('UserController', UserController);
 
-        UserController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
-    function UserController($scope,$state, UserService, $rootScope, FlashService) {
+    UserController.$inject = ['$stateParams','$scope','$state','UserService', '$rootScope', 'FlashService'];
+    function UserController($stateParams,$scope,$state, UserService, $rootScope, FlashService) {
+        debugger;
+        console.log($stateParams);
     }
 
 })();

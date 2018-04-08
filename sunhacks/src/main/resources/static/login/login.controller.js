@@ -5,13 +5,13 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state','$scope','UserService', 'FlashService'];
-    function LoginController($state,$scope, UserService, FlashService) {        
+    LoginController.$inject = ['$state','$scope','UserService', 'FlashService','$rootScope'];
+    function LoginController($state,$scope, UserService, FlashService, $rootScope) {        
         
         $scope.login = function(){
-            var authdata = {email:$scope.user.email,password:$scope.user.password};
-            var params = {username:$scope.user.email, authdata:authdata};
-            $state.go($scope.user.type, params);
+            $rootScope.globals.currentUser = $scope.user.email;
+            $rootScope.globals.currentUserType = $scope.user.type;
+            $state.go($scope.user.type);
         }
 
         /*$scope.login = function() {
