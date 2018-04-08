@@ -13,17 +13,18 @@
     <link href="app-content/app.css" rel="stylesheet" />
 </head>
 <body>
+<div class="container-fluid">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand">Identity Safe</a>
+        <a class="navbar-brand"><b>Identity Safe</b></a>
     </div>
     <div ng-hide="IsLoggedin()">
     <div class="collapse navbar-collapse" >
       <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="login" >Log In</a></li>
-        <li><a ui-sref="register"  ng-click="Register()">Register</a></li>        
+          <li><a ui-sref="login" ><b>Log In</b></a></li>
+        <li><a ui-sref="register"  ng-click="Register()"><b>Register</b></a></li>
       </ul>
     </div>
     </div>
@@ -31,7 +32,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{globals.currentUser}} <span class="caret"></span></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>{{globals.currentUser}}</b> <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a ui-sref="/" ng-click="Logout()">Logout</a></li>  
           </ul>
@@ -41,6 +42,7 @@
     </div>
   </div><!-- /.container-fluid -->
 </nav>
+</div>
 <div class="container-fluid">
     <div class="jumbotron">
         <div class="container">
