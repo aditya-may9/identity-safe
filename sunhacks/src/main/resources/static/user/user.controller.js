@@ -11,7 +11,7 @@
         $scope.secretExists = false
 
         $scope.secret = {};
-        $scope.secret.customerIdentity = $rootScope.currentUser;
+        $scope.secret.customerIdentity = $rootScope.globals.currentUser;
         $scope.secret.secretType = 'SSN';
 
         $scope.authorizeMerchant = {}
@@ -44,7 +44,7 @@
 
         $scope.authorizeSecretToMerchant = function(){
             $scope.dataLoading = true;
-            $scope.authorizeMerchant.customerIdentity = $rootScope.currentUser;
+            $scope.authorizeMerchant.customerIdentity = $rootScope.globals.currentUser;
             $scope.authorizeMerchant.secretType = "SSN";
             UserService.authorizeSecretToMerchant($scope.authorizeMerchant).then(function (response) {
                 if (response.success) {
@@ -58,9 +58,6 @@
         }
 
         $scope.getAllMaskedDataForMerchant = function(){
-            $scope.merchants = [{"merchant":"sddfs","secretType":"hasajkk","maskedSecret":"huii"},
-            {"merchant":"sddfs1","secretType":"hasajkk1","maskedSecret":"huii1"},
-            {"merchant":"sddfs2","secretType":"hasajkk2","maskedSecret":"huii2"}];
             if($scope.hasSecret){
                 UserService.getAllMaskedDataForMerchant($scope.secret.customerIdentity).then(function (response) {
                     console.log("From user"+response);
