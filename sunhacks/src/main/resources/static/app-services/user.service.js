@@ -12,12 +12,12 @@
 
         service.login = login;
         service.register = register;
-        service.hasSecret = service.hasSecret;
+        service.hasSecret = hasSecret;
         service.setSecret = setSecret;
         service.authorizeSecretToMerchant = authorizeSecretToMerchant;
         service.checkIfMerchant1IsLegit = checkIfMerchant1IsLegit;
-
-
+        service.getAllMaskedDataForCustomer = getAllMaskedDataForCustomer;
+        service.getClientDataByMerchant = getClientDataByMerchant;
         return service;
 
 
