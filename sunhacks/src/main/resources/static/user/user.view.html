@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6" ng-show="secretExists">
           <table class="table">
               <thead>
                   <tr>
@@ -16,10 +16,10 @@
                       <td>{{ m.maskedSecret }}</td>
                   </tr>
                 </tbody>
-                </table>
+             </table>
       </div>
-      <div class="col-sm-6 ">
-          <div class={'container '+secretExists? 'hidden':''}>	  
+      <div class="col-sm-6" ng-switch on == "secretExists">
+          <div class='container' ng-switch-when="0">	  
               <form name="form" ng-submit="setSecret()" role="form">
                 <div class="form-group" ng-class="{ 'has-error': form.secret.$dirty && form.secret.$error.required }">
                     <label for="secret">Secret</label>
@@ -34,7 +34,7 @@
     
     
         </div> 
-        <div class={'container '+secretExists? '':'hidden'}>	  
+        <div class='container'  ng-switch-when="1">	  
           <form name="form" ng-submit="authorizeSecretToMerchant()" role="form">
             <div class="form-group" ng-class="{ 'has-error': form.merchantIdentity.$dirty && form.merchantIdentity.$error.required }">
                 <label for="merchantIdentity">Merchant Identity</label>

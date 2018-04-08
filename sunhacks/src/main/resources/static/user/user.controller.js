@@ -8,7 +8,7 @@
     UserController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function UserController($scope,$state, UserService, $rootScope, FlashService) {
         
-        $scope.secretExists = false
+        $scope.secretExists = 0
 
         $scope.secret = {};
         $scope.secret.customerIdentity = $rootScope.globals.currentUser;
@@ -19,9 +19,9 @@
         $scope.hasSecret = function(){
         UserService.hasSecret(secret).then(function (response) {
             if (response) {
-                $scope.secretExists = true
+                $scope.secretExists = 1
             } else {
-                $scope.secretExists = false
+                $scope.secretExists = 0
             }
         });
         };
@@ -33,10 +33,10 @@
             UserService.setSecret(secret).then(function (response) {
                 if (response) {
                     FlashService.Success('Secret added successfully', true);
-                    $scope.secretExists = true
+                    $scope.secretExists = 1
                 } else {
                     FlashService.Error('Adding secret failed', true);
-                    $scope.secretExists = false
+                    $scope.secretExists = 0
                 }
             });
             $scope.dataLoading =false;
@@ -55,10 +55,10 @@
                 }
                 $scope.dataLoading = false;
             });
-        }
+        };
 
         $scope.getAllMaskedDataForMerchant = function(){
-            if($scope.hasSecret){
+            if($scope.hasSecret == 1){
                 UserService.getAllMaskedDataForMerchant($scope.secret.customerIdentity).then(function (response) {
                     console.log("From user"+response);
                     if (response) {
@@ -67,8 +67,8 @@
                     } else {
                     }
                 });
-            }
-        }
+            };
+        };
 
         $scope.getAllMaskedDataForMerchant();
 
