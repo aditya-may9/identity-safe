@@ -18,10 +18,10 @@
             UserService.register($scope.user)
                 .then(function (response) {
                     if (response) {
-                        FlashService.Success('Registration successful', true);
+                        FlashService.Success('Registration successful', false);
                         $state.go('/');
                     } else {
-                        FlashService.Error("Registration Failed",true);
+                        FlashService.Error("Registration Failed",false);
                         $scope.dataLoading = false;
                     }
                 });

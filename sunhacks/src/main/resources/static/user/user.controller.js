@@ -32,10 +32,10 @@
             $scope.dataLoading = true;
             UserService.setSecret(secret).then(function (response) {
                 if (response) {
-                    FlashService.Success('Secret added successfully', true);
+                    FlashService.Success('Secret added successfully', false);
                     $scope.secretExists = 1
                 } else {
-                    FlashService.Error('Adding secret failed', true);
+                    FlashService.Error('Adding secret failed', false);
                     $scope.secretExists = 0
                 }
             });
@@ -51,9 +51,9 @@
                 if (response) {
                     console.log(response);
                     $scope.maskedSec = response.maskedSecret;
-                    FlashService.Success('Merchant authorized successfully', true);
+                    FlashService.Success('Merchant authorized successfully', false);
                 } else {
-                    FlashService.Error('Merchant authorization failed', true);
+                    FlashService.Error('Merchant authorization failed', false);
                 }
                 $scope.dataLoading = false;
             });
