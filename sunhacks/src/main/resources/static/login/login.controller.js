@@ -14,8 +14,9 @@
 */
         $scope.login = function() {
             $scope.dataLoading = true;
-            UserService.login($scope.user, function (response) {
-                if (response.success) {
+            UserService.login($scope.user).then(function (response) {
+                console.log(response);
+                if (response) {
                     $rootScope.globals.currentUser = $scope.user.email;
                     $rootScope.globals.currentUserType = $scope.user.type;
                     $state.go($scope.user.type);

@@ -8,7 +8,6 @@
     RegisterController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function RegisterController($scope,$state, UserService, $rootScope, FlashService) {
 
-        
         $scope.register = function() {
             if($scope.user.password != $scope.reenterpassword)
             {
@@ -18,11 +17,11 @@
             $scope.dataLoading = true;
             UserService.register($scope.user)
                 .then(function (response) {
-                    if (response.success) {
+                    if (response) {
                         FlashService.Success('Registration successful', true);
-                        $state.go('login')
+                        $state.go('/');
                     } else {
-                        FlashService.Error(response.message);
+                        FlashService.Error("Registration Failed",true);
                         $scope.dataLoading = false;
                     }
                 });

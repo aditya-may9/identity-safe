@@ -9,7 +9,8 @@
     function UserController($scope,$state, UserService, $rootScope, FlashService) {
         
         $scope.secretExists = false
-        
+
+        $scope.secret = {};
         $scope.secret.customerIdentity = $rootScope.currentUser;
         $scope.secret.secretType = 'SSN';
 
@@ -17,7 +18,7 @@
 
         $scope.hasSecret = function(){
         UserService.hasSecret(secret).then(function (response) {
-            if (response.success) {
+            if (response) {
                 $scope.secretExists = true
             } else {
                 $scope.secretExists = false
@@ -30,7 +31,7 @@
         $scope.setSecret = function(){
             $scope.dataLoading = true;
             UserService.setSecret(secret).then(function (response) {
-                if (response.success) {
+                if (response) {
                     FlashService.Success('Secret added successfully', true);
                     $scope.secretExists = true
                 } else {
@@ -62,7 +63,8 @@
             {"merchant":"sddfs2","secretType":"hasajkk2","maskedSecret":"huii2"}];
             if($scope.hasSecret){
                 UserService.getAllMaskedDataForMerchant($scope.secret.customerIdentity).then(function (response) {
-                    if (response.success) {
+                    console.log("From user"+response);
+                    if (response) {
                         console.log(response);
                         $scope.merchants = [];
                     } else {
