@@ -26,9 +26,9 @@
             $scope.dataLoading = true;
             $scope.legitInfo = {
                 merchant1Identity:$rootScope.globals.currentUser,
-                merchant2Identity:$scope.info.merchant2Identity,
+                merchant2Identity:$scope.info.email,
                 maskedSecret:$scope.info.maskedSecret,
-                secretType:$rootScope.currentUserType,
+                secretType:"ssn",
                 customerIdentity:$scope.info.customerIdentity
             };
 
