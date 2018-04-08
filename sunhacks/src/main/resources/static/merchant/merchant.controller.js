@@ -7,8 +7,9 @@
 
     MerchantController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function MerchantController($scope,$state, UserService, $rootScope, FlashService) {
-        console.log($rootScope.currentUser);
-        $scope.callme = function() {UserService.getClientDataByMerchant($rootScope.currentUser)
+        console.log($rootScope.globals.currentUser+"from merchant");
+        var presU = $rootScope.globals.currentUser;
+        $scope.callme = function() {UserService.getClientDataByMerchant(presU)
             .then(function (response) {
                 console.log("From merchant"+response);
                 if (response) {
@@ -24,7 +25,7 @@
 
             $scope.dataLoading = true;
             $scope.legitInfo = {
-                merchant1Identity:$rootScope.currentUser,
+                merchant1Identity:$rootScope.globals.currentUser,
                 merchant2Identity:$scope.info.merchant2Identity,
                 maskedSecret:$scope.info.maskedSecret,
                 secretType:$rootScope.currentUserType,

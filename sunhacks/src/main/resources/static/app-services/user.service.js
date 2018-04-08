@@ -36,27 +36,27 @@
         }
 
         function setSecret(secret){
-            return $http.get('/centralAuthority/addCustomerSecret/?customerIdentity=', secret.customerIdentity+'&secret='+secret.secret+'&secretType='+secret.secretType).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
+            return $http.get('/centralAuthority/addCustomerSecret/?customerIdentity='+ secret.customerIdentity+'&secret='+secret.secret+'&secretType='+secret.secretType).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
         function hasSecret(secret){
-            return $http.get('/centralAuthority/checkIfSecretExists/?customerIdentity=', secret.customerIdentity+'&secretType='+secret.secretType).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
+            return $http.get('/centralAuthority/checkIfSecretExists/?customerIdentity='+secret.customerIdentity+'&secretType='+secret.secretType).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
         function authorizeSecretToMerchant(authorizeMerchant) {
-            return $http.get('/centralAuthority/authorizeSecretToMerchant/?customerIdentity=', authorizeMerchant.customerIdentity+'&secretType='+authorizeMerchant.secretType+'&merchantIdentity='+authorizeMerchant.merchantIdentity+'&minutes='+authorizeMerchant.minutes).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
+            return $http.get('/centralAuthority/authorizeSecretToMerchant/?customerIdentity='+authorizeMerchant.customerIdentity+'&secretType='+authorizeMerchant.secretType+'&merchantIdentity='+authorizeMerchant.merchantIdentity+'&minutes='+authorizeMerchant.minutes).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
         function getAllMaskedDataForCustomer(customerIdentity){
-            return $http.get('/centralAuthority/getAllMaskedDataForMerchant/?customerIdentity=', customerIdentity).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
+            return $http.get('/centralAuthority/getAllMaskedDataForMerchant/?customerIdentity='+customerIdentity).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
         function checkIfMerchant1IsLegit(legitInfo) {
-            return $http.get('/merchant/checkIfMerchantInfoIsLegit/?merchant1Identity=' + legitInfo.merchant1Identity+'&merchant2Identity='+legitInfo.merchant2Identity+'&maskedSecret='+legitInfo.maskedSecret+'&secretType='+legitInfo.secretType+'&customerIdentity='+legitInfo.customerIdentity).then(handleSuccess, handleError('Error checking merchant is legit or not user'));
+            return $http.get('/merchant/checkIfMerchantInfoIsLegit/?merchant1Identity='+legitInfo.merchant1Identity+'&merchant2Identity='+legitInfo.merchant2Identity+'&maskedSecret='+legitInfo.maskedSecret+'&secretType='+legitInfo.secretType+'&customerIdentity='+legitInfo.customerIdentity).then(handleSuccess, handleError('Error checking merchant is legit or not user'));
         }
 
         function getClientDataByMerchant(user){
-            return $http.get('/centralAuthority/getAllMaskedDataForMerchant/?merchantIdentity=', user).then(handleSuccess, handleError('Error getClientDataByMerchant user'));
+            return $http.get('/centralAuthority/getAllMaskedDataForMerchant/?merchantIdentity='+user).then(handleSuccess, handleError('Error getClientDataByMerchant user'));
         }
 
         function Delete(id) {
