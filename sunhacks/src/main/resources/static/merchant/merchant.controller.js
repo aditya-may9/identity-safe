@@ -41,7 +41,6 @@
                         FlashService.Success('Credit Score: '+Math.random()*100, false);
                     } else {
                         FlashService.Error("Unauthorised to access credit scores");
-
                     }
                     $scope.dataLoading = false;
                 });

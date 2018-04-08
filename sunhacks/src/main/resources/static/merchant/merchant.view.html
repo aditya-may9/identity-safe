@@ -1,4 +1,5 @@
 <div>
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
     <div class="row">
         <div class="col-sm-6">
             <table class="table">
@@ -28,11 +29,6 @@
                     <label for="maskedSecret">Masked Secret</label>
                     <input type="text" name="maskedSecret" id="maskedSecret" class="form-control" ng-model="info.maskedSecret" required />
                     <span ng-show="form.maskedSecret.$dirty && form.maskedSecret.$error.required" class="help-block">Masked secret is required</span>
-                </div>
-                <div class="form-group" ng-class="{ 'has-error': form.secretType.$dirty && form.secretType.$error.required }">
-                    <label for="secretType">Secret type</label>
-                    <input type="text" name="secretType" id="secretType" class="form-control" ng-model="info.secretType" required />
-                    <span ng-show="form.secretType.$dirty && form.secretType.$error.required" class="help-block">Secret type is required</span>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': form.customerIdentity.$dirty && form.customerIdentity.$error.required }">
                     <label for="customerIdentity">Customer Identity</label>
