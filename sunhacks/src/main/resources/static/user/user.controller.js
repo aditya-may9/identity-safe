@@ -12,7 +12,7 @@
 
         $scope.secret = {};
         $scope.secret.customerIdentity = $rootScope.globals.currentUser;
-        $scope.secret.secretType = 'SSN';
+        $scope.secret.secretType = 'ssn';
 
         $scope.authorizeMerchant = {}
 
@@ -45,10 +45,12 @@
         $scope.authorizeSecretToMerchant = function(){
             $scope.dataLoading = true;
             $scope.authorizeMerchant.customerIdentity = $rootScope.globals.currentUser;
-            $scope.authorizeMerchant.secretType = "SSN";
+            $scope.authorizeMerchant.secretType = "ssn";
             UserService.authorizeSecretToMerchant($scope.authorizeMerchant).then(function (response) {
-                if (response.success) {
-                    console.log(respose);
+             //   console.log(response);
+                if (response) {
+                    console.log(response);
+                    $scope.maskedSec = response.maskedSecret;
                     FlashService.Success('Merchant authorized successfully', true);
                 } else {
                     FlashService.Error('Merchant authorization failed', true);
@@ -57,10 +59,10 @@
             });
         }
 
-        $scope.getAllMaskedDataForMerchant = function(){
-            if($scope.hasSecret){
-                UserService.getAllMaskedDataForMerchant($scope.secret.customerIdentity).then(function (response) {
-                    console.log("From user"+response);
+        $scope.getAllMaskedDataForCustomer = function(){
+            if( $scope.secretExists ){
+                UserService.getAllMaskedDataForCustomer($scope.secret.customerIdentity).then(function (response) {
+                  //  console.log("From user"+response);
                     if (response) {
                         console.log(response);
                         $scope.merchants = [];
@@ -68,9 +70,9 @@
                     }
                 });
             }
-        }
+        };
 
-        $scope.getAllMaskedDataForMerchant();
+        $scope.getAllMaskedDataForCustomer();
 
 
     }
