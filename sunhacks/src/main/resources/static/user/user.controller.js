@@ -7,19 +7,34 @@
 
     UserController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function UserController($scope,$state, UserService, $rootScope, FlashService) {
-        
-        $scope.secretExists = 0
 
-        $scope.secret = {};
-        $scope.secret.customerIdentity = $rootScope.globals.currentUser;
-        $scope.secret.secretType = 'ssn';
+        $scope.getAllMaskedDataForCustomer = function(){
+            if( $scope.secretExists == 1){
+                UserService.getAllMaskedDataForCustomer($rootScope.globals.currentUser).then(function (response) {
+                    //  console.log("From user"+response);
+                    if (response) {
+                        console.log(response);
+                        $scope.merchants = response;
+                    } else {
+                    }
+                });
+            };
+        };
+
+
+        $scope.secretExists = 0;
+
+     //   $scope.secret = {};
+     //   $scope.secret.customerIdentity = $rootScope.globals.currentUser;
+    //    $scope.secret.secretType = 'ssn';
 
         $scope.authorizeMerchant = {}
 
         $scope.hasSecret = function(){
-        UserService.hasSecret(secret).then(function (response) {
+        UserService.hasSecret($rootScope.globals.currentUser,"ssn").then(function (response) {
             if (response) {
-                $scope.secretExists = 1
+                $scope.secretExists = 1;
+                $scope.getAllMaskedDataForCustomer();
             } else {
                 $scope.secretExists = 0
             }
@@ -30,7 +45,7 @@
 
         $scope.setSecret = function(){
             $scope.dataLoading = true;
-            UserService.setSecret(secret).then(function (response) {
+            UserService.setSecret($scope.secret,$rootScope.globals.currentUser,"ssn").then(function (response) {
                 if (response) {
                     FlashService.Success('Secret added successfully', true);
                     $scope.secretExists = 1
@@ -59,20 +74,7 @@
             });
         };
 
-        $scope.getAllMaskedDataForCustomer = function(){
-            if( $scope.secretExists ){
-                UserService.getAllMaskedDataForCustomer($scope.secret.customerIdentity).then(function (response) {
-                  //  console.log("From user"+response);
-                    if (response) {
-                        console.log(response);
-                        $scope.merchants = [];
-                    } else {
-                    }
-                });
-            };
-        };
 
-        $scope.getAllMaskedDataForCustomer();
 
 
     }

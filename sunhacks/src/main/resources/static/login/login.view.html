@@ -19,7 +19,6 @@
         <div class="form-group" ng-class="{ 'has-error': form.type.$dirty && form.type.$error.required }">
             <input for="type" type="radio" ng-model="user.type" value="merchant"> Merchant<br>
             <input for="type" type="radio" ng-model="user.type" value="user" checked> User<br>
-            <input for="type" type="radio" ng-model="user.type" value="ca" checked> CA<br>
             <span ng-show="form.type.$dirty && form.type.$error.required" class="help-block">Type is required</span>
           </div>
             <div class="form-actions">

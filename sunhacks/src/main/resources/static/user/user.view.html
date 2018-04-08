@@ -18,12 +18,12 @@
                 </tbody>
              </table>
       </div>
-      <div class="col-sm-6" ng-switch on == "secretExists">
+      <div class="col-sm-6" ng-switch on = "secretExists">
           <div class='container' ng-switch-when="0">	  
               <form name="form" ng-submit="setSecret()" role="form">
                 <div class="form-group" ng-class="{ 'has-error': form.secret.$dirty && form.secret.$error.required }">
                     <label for="secret">Secret</label>
-                    <input type="text" name="secret" id="secret" class="form-control" ng-model="secret.secret" required />
+                    <input type="text" name="secret" id="secret" class="form-control" ng-model="secret" required />
                     <span ng-show="form.secret.$dirty && form.secret.$error.required" class="help-block"Secret is required</span>
                 </div>                
                 <div class="form-actions">

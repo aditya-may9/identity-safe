@@ -35,13 +35,14 @@
             console.log($scope.legitInfo);
 
 
-            UserService.checkIfMerchant1IsLegit(legitInfo)
+            UserService.checkIfMerchant1IsLegit($scope.legitInfo)
                 .then(function (response) {
                     if (response) {
-                        FlashService.Success('Credit Score: '+Math.random()*100, true);
+                        FlashService.Success('Credit Score: '+Math.random()*100, false);
+                        $scope.dataLoading = false;
                     } else {
                         FlashService.Error("Unauthorised to access credit scores");
-                        $scope.dataLoading = false;
+
                     }
                 });
         };
