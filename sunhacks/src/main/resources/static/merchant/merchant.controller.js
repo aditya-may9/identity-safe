@@ -38,12 +38,12 @@
             UserService.checkIfMerchant1IsLegit($scope.legitInfo)
                 .then(function (response) {
                     if (response) {
-                        FlashService.Success('Credit Score: '+Math.random()*100, false);
-                        $scope.dataLoading = false;
+                        FlashService.Success('Credit Score: '+Math.random()*100, true);
                     } else {
                         FlashService.Error("Unauthorised to access credit scores");
 
                     }
+                    $scope.dataLoading = false;
                 });
         };
         $scope.cancel = function(){
