@@ -23,7 +23,7 @@
 
 
         function login(user) {
-            return $http.get('/login/?email='+user.email+'&password='+user.password+'&userType='+user.type).then(handleSuccess, handleError('Login failed'));
+            return $http.get('/generic/login/?email='+user.email+'&password='+user.password+'&userType='+user.type).then(handleSuccess, handleError('Login failed'));
         }
 
         function register(user) {
