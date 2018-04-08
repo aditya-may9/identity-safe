@@ -19,12 +19,7 @@
             };
 
             console.log($scope.legitInfo);
-            UserService.getClientDataByMerchant($rootScope.currentUser).then(function (response) {
 
-            })
-            {
-
-            }
             UserService.getClientDataByMerchant($rootScope.currentUser)
                 .then(function (response) {
                     if (response.success) {
