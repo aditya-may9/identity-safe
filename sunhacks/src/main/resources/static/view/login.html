@@ -8,7 +8,7 @@ form {border: 3px solid #f1f1f1;}
 
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 2px 20px;
+    padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -18,7 +18,7 @@ input[type=text], input[type=password] {
 button {
     background-color: #4CAF50;
     color: white;
-    padding:14px 20px;
+    padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -37,7 +37,7 @@ button:hover {
 
 .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
+    margin: 4px 0 2px 0;
 }
 
 img.avatar {
@@ -68,31 +68,31 @@ span.psw {
 </head>
 <body>
 
-<h2>Register Form</h2>
+<h2>Login Form</h2>
 
-<form name="form" ng-submit="register()" role="form">
+<form action="#">
   <div class="imgcontainer">
-    <img src="../view/Register-512.png" alt="Avatar" class="avatar">
+    <img src="user.png" alt="Avatar" class="avatar">
   </div>
+
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" ng-model="user.name" name="uname" required>
-
+    <input type="text" name="uname" required>
     <label for="psw"><b>Password</b></label>
-    <input type="password" ng-model="user.password" name="psw" required>
-    <label for="email"><b>Email</b></label>
-    <input type="text" ng-model="user.email" required>
-	<label for="address"><b>Address</b></label>
-    <input type="text" ng-model="user.address" required>
-
+    <input type="password" name="psw" required>
+    
+    <button type="submit">Login</button>
     <label>
-	  <input type="radio" ng-model="user.type" value="Merchant"> Merchant<br>
-      <input type="radio" ng-model="user.type" value="User" checked> User<br>
+	  <input type="radio" name="usertype" value="Merchant"> Merchant<br>
+      <input type="radio" name="usertype" value="User" checked> User<br>
       
     </label>
-    <button type="submit">Register</button>
   </div>
 
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
 </form>
 
 </body>
