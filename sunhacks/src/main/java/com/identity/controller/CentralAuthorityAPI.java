@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/centralAuthority")
 public class CentralAuthorityAPI {
@@ -20,6 +22,12 @@ public class CentralAuthorityAPI {
     @CrossOrigin
     public String test() {
         return "CA test";
+    }
+
+    @RequestMapping("/getAllMaskedDataForMerchant")
+    @CrossOrigin
+    public List<MaskedSecrets> getAllMaskedDataForMerchant(@RequestParam(value = "merchantIdentity") String merchantIdentity) {
+        return centralAuthorityService.getAllMaskedDataForMerchant(merchantIdentity);
     }
 
     @RequestMapping("/addCustomerSecret")

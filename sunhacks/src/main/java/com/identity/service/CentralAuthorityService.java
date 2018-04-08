@@ -204,4 +204,8 @@ public class CentralAuthorityService {
         }
     }
 
+    public List<MaskedSecrets> getAllMaskedDataForMerchant(String merchantIdentity) {
+        return maskedSecretsRepository.findByMerchant(merchantIdentity);
+    }
+
 }
