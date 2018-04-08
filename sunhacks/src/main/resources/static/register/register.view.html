@@ -1,53 +1,42 @@
-﻿<div class="modal-header">
+<div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
-     <h3 class="modal-title">Register</h3>
-</div> 
+  <h3 class="modal-title">Register</h3>
+</div>
 <div class="modal-body">
-    <form name="form" ng-submit="register()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.apartmentName.$dirty && form.apartmentName.$error.required }">
-            <label for="apartmentName">Apartment Name</label>
-            <select name="apartmentName" id="apartmentName" class="form-control" ng-model="user.apartmentId"
-             ng-change="getFlatsForApartment()" required >
-                 <option ng-repeat="apartment in AvailableApartments" value="{{apartment.Id}}">{{apartment.Name}}</option>
-            </select>
-            <span ng-show="form.apartmentName.$dirty && form.apartmentName.$error.required" class="help-block">Apartment Name is required</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.flatName.$dirty && form.flatName.$error.required }">
-            <label for="flatName">Flat Name</label>
-            <select name="flatName" id="flatName" class="form-control" ng-model="user.flatId" 
-            ng-disabled="isFlatSelectionDisabled" required >
-                 <option ng-repeat="flatName in AvailableFlats" value="{{flatName.Id}}">{{flatName.Name}}</option>
-            </select>
-            <span ng-show="form.flatName.$dirty && form.flatName.$error.required" class="help-block">Flat Name is required</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-            <label for="username">First name</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="user.firstName" required />
-            <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-            <label for="username">Last name</label>
-            <input type="text" name="lastName" id="Text1" class="form-control" ng-model="user.lastName" required />
-            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required />
-            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-            <label for="password">Re-enter Password</label>
-            <input type="password" name="reenterpassword" id="reenterpassword" class="form-control" ng-model="reenterpassword" required />
-            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-        </div>
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Register</button>
-            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        </div>
-    </form>
+  <form name="form" ng-submit="register()" role="form">
+      <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+        <label for="username">Username</label>
+        <input name="username" id="username" class="form-control" type="text" ng-model="user.username" required>
+        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+        <label for="email">Email</label>
+        <input name="email" id="email" class="form-control" type="text" ng-model="user.email" required>
+        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.address.$dirty && form.address.$error.required }">
+        <label for="address">Address</label>
+        <input name="address" id="address" class="form-control" type="text" ng-model="user.address" required>
+        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Address is required</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+        <label for="password">Password</label>
+        <input name="password" id="password" class="form-control" type="password" ng-model="user.password" required>
+        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Password is required</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.reenterpassword.$dirty && form.reenterpassword.$error.required }">
+        <label for="reenterpassword">Re-enter Password</label>
+        <input type="reenterpassword" name="reenterpassword" id="reenterpassword" class="form-control" ng-model="reenterpassword" required />
+        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.type.$dirty && form.type.$error.required }">
+        <input for="type" type="radio" ng-model="user.type" value="merchant"> Merchant<br>
+        <input for="type" type="radio" ng-model="user.type" value="user" checked> User<br>
+        <span ng-show="form.type.$dirty && form.type.$error.required" class="help-block">Type is required</span>
+      </div>
+      <div class="form-actions">
+        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Register</button>
+        <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </div>
+  </form>
 </div>

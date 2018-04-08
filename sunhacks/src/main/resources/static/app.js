@@ -11,7 +11,7 @@
 
         $urlRouterProvider.otherwise('/');
 
-        $stateProvider
+        $stateProvider           
 
             .state('/', {
                 url:'/',
@@ -44,19 +44,22 @@
                 }]                
             })
 
-            .state('login.manage', {
-                params:{username:null,authdata:null},
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    $modal.open({                        
-                        templateUrl: 'login/manage.view.html',
-                        params:{username:null,authdata:null},
-                        controller: 'ManageController',
-                        backdrop: 'static'          
-                    }).result.finally(function(data) {
-                        $state.go('^');
-                    });
-                }]
-                
+            .state('user', {
+                url:'/user',                
+                controller: 'UserController',
+                templateUrl: 'user/user.view.html'
+            })
+
+            .state('merchant', {
+                url:'/merchant',                
+                controller: 'MerchantController',
+                templateUrl: 'merchant/merchant.view.html'
+            })
+
+            .state('ca', {
+                url:'/ca',                
+                controller: 'CAController',
+                templateUrl: 'ca/ca.view.html'
             });
     }
 

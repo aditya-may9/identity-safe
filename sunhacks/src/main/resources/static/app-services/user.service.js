@@ -9,33 +9,36 @@
     function UserService($http) {
         var service = {};
 
-        service.GetAll = GetAll;
-        service.GetById = GetById;
-        service.GetByUsername = GetByUsername;
-        service.Create = Create;
-        service.Update = Update;
-        service.Delete = Delete;
+
+        service.login = login;
+        service.register = register;
+        service.authorizeSecretToMerchant = authorizeSecretToMerchant;
+        service.checkIfMerchant1IsLegit = checkIfMerchant1IsLegit;
+
 
         return service;
 
-        function GetAll() {
-            return $http.get('/api/users');
+
+
+        function login(user) {
+            return $http.get('/login/?email='+user.email+'&password='+user.password+'&userType='+user.type).then(handleSuccess, handleError('Login failed'));
         }
 
-        function GetById(id) {
-            return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+        function register(user) {
+            if(user.type == "user")
+                return $http.get('/customer/registerCustomerToCentralAuthority/?identity='+user.name+'&name='+user.name+'&address='+user.address+'&email='+user.email+'&password='+user.password).then(handleSuccess, handleError('Error register user by username'));
+
+            else if(user.type == "merchant")
+            {
+                return $http.get('/customer/registerCustomerToCentralAuthority/?identity='+user.identity+'&name='+user.name+'&address='+user.address+'&email='+user.email+'&password='+user.password+'&description='+user.description).then(handleSuccess, handleError('Error register user by username'));
+            }
+        }
+        function authorizeSecretToMerchant(authorizeMerchant) {
+            return $http.get('/centralAuthority/authorizeSecretToMerchant/?customerIdentity=', authorizeMerchant.customerIdentity+'&secretType='+authorizeMerchant.secretType+'&merchantIdentity='+authorizeMerchant.merchantIdentity+'&minutes='+authorizeMerchant.minutes).then(handleSuccess, handleError('Error authorizeSecretToMerchant user'));
         }
 
-        function GetByUsername(username) {
-            return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
-        }
-
-        function Create(user) {
-            return $http.post('/api/users', user).then(handleSuccess, handleError('Error creating user'));
-        }
-
-        function Update(user) {
-            return $http.put('/api/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+        function checkIfMerchant1IsLegit(legitInfo) {
+            return $http.get('/merchant/checkIfMerchantInfoIsLegit/?merchant1Identity=' + legitInfo.merchant1Identity+'&merchant2Identity='+legitInfo.merchant2Identity+'&maskedSecret='+legitInfo.maskedSecret+'&secretType='+legitInfo.secretType+'&customerIdentity='+legitInfo.customerIdentity).then(handleSuccess, handleError('Error checking merchant is legit or not user'));
         }
 
         function Delete(id) {

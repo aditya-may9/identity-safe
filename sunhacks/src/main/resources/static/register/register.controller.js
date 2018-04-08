@@ -8,24 +8,7 @@
     RegisterController.$inject = ['$scope','$state','UserService', '$rootScope', 'FlashService'];
     function RegisterController($scope,$state, UserService, $rootScope, FlashService) {
 
-         
-        UserService.GetAllAvailableApartments("").then(function (apartments) {
-                    $scope.AvailableApartments = apartments;
-                });
-        $scope.isFlatSelectionDisabled = true;
-
-        $scope.getFlatsForApartment = function() {
-            if($scope.user.apartmentId != null){                 
-                UserService.GetFlatsForApartment($scope.user.apartmentId,"").then(function (flats) {
-                    $scope.AvailableFlats = flats;
-                });
-                $scope.isFlatSelectionDisabled = false;
-            }
-            else {
-                 $scope.isFlatSelectionDisabled = true;
-            }
-           };
-
+        
         $scope.register = function() {
             if($scope.user.password != $scope.reenterpassword)
             {
@@ -33,7 +16,7 @@
                 return;
             }
             $scope.dataLoading = true;
-            UserService.Create($scope.user)
+            UserService.register($scope.user)
                 .then(function (response) {
                     if (response.success) {
                         FlashService.Success('Registration successful', true);
@@ -45,10 +28,10 @@
                 });
         };
 
-
         $scope.cancel = function(){
             $state.go('/');
         };
+
     }
 
 })();

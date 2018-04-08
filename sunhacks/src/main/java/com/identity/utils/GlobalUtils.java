@@ -17,5 +17,4 @@ public class GlobalUtils {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
-
 }
