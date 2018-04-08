@@ -1,57 +1,61 @@
-<div class="container-fluid text-center">    
-    <div class="row content">
-      <div class="col-sm-2 sidenav">
-      <div class="row">
-    <div class="col_left" style="background-color:#aaa;">
-      <h2>Merchant ID</h2>
-      <div class="alert alert-success alert-dismissible" id="data1">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 1:</strong> hjjhvjhvhjv
-    </div>
-    <div class="alert alert-success alert-dismissible" id="data2">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 2: </strong> hjjhvjhvhjv
-    </div>
-    <div class="alert alert-success alert-dismissible" id="data3">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 3:</strong> hjjhvjhvhjv
-    </div>
-    </div>
-    <div class="col_left" style="background-color:#bbb;">
-      <h2>Fake SSN</h2>
-      <div class="alert alert-success alert-dismissible" id="data4">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 1:</strong> hjjhvjhvhjv
-    </div>
-    <div class="alert alert-success alert-dismissible" id="data5">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 2: </strong> hjjhvjhvhjv
-    </div>
-    <div class="alert alert-success alert-dismissible" id="data6">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 3:</strong> hjjhvjhvhjv
-    </div>
-    <div class="alert alert-success alert-dismissible" id="data7">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Data 3:</strong> hjjhvjhvhjv
-    </div>
-    </div>
-  </div>
-       
+<div>
+    <div class="row">
+      <div class="col-sm-6">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <td>Merchant</td>
+                      <td>Type</td>
+                      <td>Secret</td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="m in merchants">
+                      <td>{{ m.merchant }}</td>
+                      <td>{{ m.secretType }}</td>
+                      <td>{{ m.maskedSecret }}</td>
+                  </tr>
+                </tbody>
+                </table>
       </div>
-      <div class="col-sm-8 text-left sidenav2"> 
-        <h1>Welcome</h1>
-        <div class="container">	  
-      <label for="mname"><b>Merchant name: </b></label>
-      <input type="text" name="mname" required>	
-      <label for="mtype"><b>Merchant type: </b></label>	
-      <input type="text" name="mtype" required>  
-      <label for="ttl"><b>TTL: </b></label>
-      <input type="text" name="ttl" required>
-      
-      <button type="submit">Grant</button>
+      <div class="col-sm-6 ">
+          <div class={'container '+secretExists? 'hidden':''}>	  
+              <form name="form" ng-submit="setSecret()" role="form">
+                <div class="form-group" ng-class="{ 'has-error': form.secret.$dirty && form.secret.$error.required }">
+                    <label for="secret">Secret</label>
+                    <input type="text" name="secret" id="secret" class="form-control" ng-model="secret.secret" required />
+                    <span ng-show="form.secret.$dirty && form.secret.$error.required" class="help-block"Secret is required</span>
+                </div>                
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Submit</button>
+                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>
+            </form>
+    
+    
+        </div> 
+        <div class={'container '+secretExists? '':'hidden'}>	  
+          <form name="form" ng-submit="authorizeSecretToMerchant()" role="form">
+            <div class="form-group" ng-class="{ 'has-error': form.merchantIdentity.$dirty && form.merchantIdentity.$error.required }">
+                <label for="merchantIdentity">Merchant Identity</label>
+                <input type="text" name="merchantIdentity" id="merchantIdentity" class="form-control" ng-model="authorizeMerchant.merchantIdentity" required />
+                <span ng-show="form.merchantIdentity.$dirty && form.merchantIdentity.$error.required" class="help-block">Merchant Identity is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.minutes.$dirty && form.minutes.$error.required }">
+                <label for="minutes">TTL</label>
+                <input type="minutes" name="minutes" id="minutes" class="form-control" ng-model="authorizeMerchant.minutes" required />
+                <span ng-show="form.minutes.$dirty && form.password.$error.required" class="help-block">TTL is required</span>
+            </div>
+            <div class="form-group">
+                <label for="minutes">Secret</label>
+                <input type="minutes" name="minutes" id="minutes" class="form-control" ng-model="minutes" readonly />
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Submit</button>
+                <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+        </form>
     </div>
-        <hr>
       
       </div>
       
