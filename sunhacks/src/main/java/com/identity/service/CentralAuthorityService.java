@@ -208,4 +208,8 @@ public class CentralAuthorityService {
         return maskedSecretsRepository.findByMerchant(merchantIdentity);
     }
 
+    public List<MaskedSecrets> getAllMaskedDataForCustomer(String customer) {
+        return maskedSecretsRepository.findByCustomerIdentity(customer);
+    }
+
 }
